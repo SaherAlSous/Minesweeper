@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Minesweeper/task" />
+            <option value="$PROJECT_DIR$/Topics/Declaring classes/Complex numbers" />
+            <option value="$PROJECT_DIR$/Topics/Declaring classes/Playing with time" />
+            <option value="$PROJECT_DIR$/Topics/Declaring classes/Pseudo-constructor" />
+            <option value="$PROJECT_DIR$/Topics/Declaring classes/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Declaring functions/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Declaring functions/Vowel or not" />
+            <option value="$PROJECT_DIR$/Topics/Default arguments/Calculate volume" />
+            <option value="$PROJECT_DIR$/Topics/Default arguments/Polynomial" />
+            <option value="$PROJECT_DIR$/Topics/Default arguments/Print Username" />
+            <option value="$PROJECT_DIR$/Topics/Default arguments/Summation" />
+            <option value="$PROJECT_DIR$/Topics/Default arguments/Theory" />
+            <option value="$PROJECT_DIR$/Topics/For loop and lists/Count occurrences" />
+            <option value="$PROJECT_DIR$/Topics/For loop and lists/For loops task" />
+            <option value="$PROJECT_DIR$/Topics/For loop and lists/Number in a set" />
+            <option value="$PROJECT_DIR$/Topics/For loop and lists/The index of the first max" />
+            <option value="$PROJECT_DIR$/Topics/For loop and lists/Theory" />
+            <option value="$PROJECT_DIR$/Topics/For loop and lists/Triples" />
+            <option value="$PROJECT_DIR$/Topics/For loop and ranges/Count the numbers" />
+            <option value="$PROJECT_DIR$/Topics/For loop and ranges/Fizz Buzz" />
+            <option value="$PROJECT_DIR$/Topics/For loop and ranges/The maximum pairwise product" />
+            <option value="$PROJECT_DIR$/Topics/For loop and ranges/The minimum value of N numbers" />
+            <option value="$PROJECT_DIR$/Topics/For loop and ranges/The roots of equation" />
+            <option value="$PROJECT_DIR$/Topics/For loop and ranges/The sum of N numbers" />
+            <option value="$PROJECT_DIR$/Topics/For loop and ranges/The sum of integers from a to b" />
+            <option value="$PROJECT_DIR$/Topics/For loop and ranges/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Functional decomposition/Calculator with four functions" />
+            <option value="$PROJECT_DIR$/Topics/Functional decomposition/Create a full name" />
+            <option value="$PROJECT_DIR$/Topics/Functional decomposition/Decompose a math function" />
+            <option value="$PROJECT_DIR$/Topics/Functional decomposition/Theory" />
+            <option value="$PROJECT_DIR$/Topics/If expression/Check a number is positive" />
+            <option value="$PROJECT_DIR$/Topics/If expression/Healthy sleep" />
+            <option value="$PROJECT_DIR$/Topics/If expression/Interval" />
+            <option value="$PROJECT_DIR$/Topics/If expression/Odd or even" />
+            <option value="$PROJECT_DIR$/Topics/If expression/Queens" />
+            <option value="$PROJECT_DIR$/Topics/If expression/The max of three numbers" />
+            <option value="$PROJECT_DIR$/Topics/If expression/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Integers in action/Divide nuts equally between squirrels" />
+            <option value="$PROJECT_DIR$/Topics/Integers in action/Next even number" />
+            <option value="$PROJECT_DIR$/Topics/Integers in action/The first digit of a two-digit number" />
+            <option value="$PROJECT_DIR$/Topics/Integers in action/The last digit of a number" />
+            <option value="$PROJECT_DIR$/Topics/Integers in action/The number of tens" />
+            <option value="$PROJECT_DIR$/Topics/Integers in action/The sum of digits" />
+            <option value="$PROJECT_DIR$/Topics/Integers in action/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Integers in action/Time difference" />
+            <option value="$PROJECT_DIR$/Topics/Multi-dimensional list/Kotlin lists" />
+            <option value="$PROJECT_DIR$/Topics/Multi-dimensional list/Shapeshifter" />
+            <option value="$PROJECT_DIR$/Topics/Multi-dimensional list/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Properties accessors/City population" />
+            <option value="$PROJECT_DIR$/Topics/Properties accessors/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Random/Temperature generator" />
+            <option value="$PROJECT_DIR$/Topics/Random/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Relational operators/Are the numbers different?" />
+            <option value="$PROJECT_DIR$/Topics/Relational operators/Boys in the sport class" />
+            <option value="$PROJECT_DIR$/Topics/Relational operators/Check the sum" />
+            <option value="$PROJECT_DIR$/Topics/Relational operators/Check the value" />
+            <option value="$PROJECT_DIR$/Topics/Relational operators/Check the value (1)" />
+            <option value="$PROJECT_DIR$/Topics/Relational operators/Exactly one parameter is positive" />
+            <option value="$PROJECT_DIR$/Topics/Relational operators/Groundhogs at the party" />
+            <option value="$PROJECT_DIR$/Topics/Relational operators/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Secondary constructor/Barista problem" />
+            <option value="$PROJECT_DIR$/Topics/Secondary constructor/Fabric manufacture" />
+            <option value="$PROJECT_DIR$/Topics/Secondary constructor/Frozen desserts" />
+            <option value="$PROJECT_DIR$/Topics/Secondary constructor/Theory" />
+            <option value="$PROJECT_DIR$/Topics/String templates/Arithmetic expression" />
+            <option value="$PROJECT_DIR$/Topics/String templates/Date and time formatting" />
+            <option value="$PROJECT_DIR$/Topics/String templates/Print two numbers on the same line" />
+            <option value="$PROJECT_DIR$/Topics/String templates/Repetitions and templates" />
+            <option value="$PROJECT_DIR$/Topics/String templates/Theory" />
+            <option value="$PROJECT_DIR$/Topics/When expression/Direction" />
+            <option value="$PROJECT_DIR$/Topics/When expression/FTN-Numbers" />
+            <option value="$PROJECT_DIR$/Topics/When expression/Harry Potter" />
+            <option value="$PROJECT_DIR$/Topics/When expression/The army of units" />
+            <option value="$PROJECT_DIR$/Topics/When expression/The number of digits" />
+            <option value="$PROJECT_DIR$/Topics/When expression/Theory" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

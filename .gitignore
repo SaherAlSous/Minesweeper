@@ -1,0 +1,94 @@
+# Project exclude paths
+/.gradle/
+/Minesweeper/task/build/
+/Minesweeper/task/out/
+/Minesweeper/task/out/production/classes/
+/Minesweeper/task/out/test/classes/
+/Topics/Declaring classes/Playing with time/out/
+/Topics/Declaring classes/Playing with time/out/production/classes/
+/Topics/For loop and lists/Count occurrences/out/
+/Topics/For loop and lists/Count occurrences/out/production/classes/
+/Topics/For loop and lists/For loops task/out/
+/Topics/For loop and lists/For loops task/out/production/classes/
+/Topics/For loop and lists/Number in a set/out/
+/Topics/For loop and lists/Number in a set/out/production/classes/
+/Topics/For loop and lists/The index of the first max/out/
+/Topics/For loop and lists/The index of the first max/out/production/classes/
+/Topics/For loop and lists/Theory/out/
+/Topics/For loop and lists/Theory/out/production/classes/
+/Topics/For loop and lists/Triples/out/
+/Topics/For loop and lists/Triples/out/production/classes/
+/Topics/For loop and ranges/The maximum pairwise product/out/
+/Topics/For loop and ranges/The maximum pairwise product/out/production/classes/
+/Topics/If expression/Check a number is positive/out/
+/Topics/If expression/Check a number is positive/out/production/classes/
+/Topics/If expression/Healthy sleep/out/
+/Topics/If expression/Healthy sleep/out/production/classes/
+/Topics/If expression/Interval/out/
+/Topics/If expression/Interval/out/production/classes/
+/Topics/If expression/Odd or even/out/
+/Topics/If expression/Odd or even/out/production/classes/
+/Topics/If expression/Queens/out/
+/Topics/If expression/Queens/out/production/classes/
+/Topics/If expression/The max of three numbers/out/
+/Topics/If expression/The max of three numbers/out/production/classes/
+/Topics/If expression/Theory/out/
+/Topics/If expression/Theory/out/production/classes/
+/Topics/Integers in action/Divide nuts equally between squirrels/out/
+/Topics/Integers in action/Divide nuts equally between squirrels/out/production/classes/
+/Topics/Integers in action/Next even number/out/
+/Topics/Integers in action/Next even number/out/production/classes/
+/Topics/Integers in action/The first digit of a two-digit number/out/
+/Topics/Integers in action/The first digit of a two-digit number/out/production/classes/
+/Topics/Integers in action/The last digit of a number/out/
+/Topics/Integers in action/The last digit of a number/out/production/classes/
+/Topics/Integers in action/The number of tens/out/
+/Topics/Integers in action/The number of tens/out/production/classes/
+/Topics/Integers in action/The sum of digits/out/
+/Topics/Integers in action/The sum of digits/out/production/classes/
+/Topics/Integers in action/Theory/out/
+/Topics/Integers in action/Theory/out/production/classes/
+/Topics/Integers in action/Time difference/out/
+/Topics/Integers in action/Time difference/out/production/classes/
+/Topics/Multi-dimensional list/Kotlin lists/out/
+/Topics/Multi-dimensional list/Kotlin lists/out/production/classes/
+/Topics/Multi-dimensional list/Shapeshifter/out/
+/Topics/Multi-dimensional list/Shapeshifter/out/production/classes/
+/Topics/Multi-dimensional list/Theory/out/
+/Topics/Multi-dimensional list/Theory/out/production/classes/
+/Topics/Random/Temperature generator/out/
+/Topics/Random/Temperature generator/out/production/classes/
+/Topics/Random/Theory/out/
+/Topics/Random/Theory/out/production/classes/
+/Topics/Relational operators/Are the numbers different?/out/
+/Topics/Relational operators/Are the numbers different?/out/production/classes/
+/Topics/Relational operators/Boys in the sport class/out/
+/Topics/Relational operators/Boys in the sport class/out/production/classes/
+/Topics/Relational operators/Check the sum/out/
+/Topics/Relational operators/Check the sum/out/production/classes/
+/Topics/Relational operators/Check the value/out/
+/Topics/Relational operators/Check the value/out/production/classes/
+/Topics/Relational operators/Check the value (1)/out/
+/Topics/Relational operators/Check the value (1)/out/production/classes/
+/Topics/Relational operators/Exactly one parameter is positive/out/
+/Topics/Relational operators/Exactly one parameter is positive/out/production/classes/
+/Topics/Relational operators/Groundhogs at the party/out/
+/Topics/Relational operators/Groundhogs at the party/out/production/classes/
+/Topics/Relational operators/Theory/out/
+/Topics/Relational operators/Theory/out/production/classes/
+/Topics/Secondary constructor/Fabric manufacture/out/
+/Topics/Secondary constructor/Fabric manufacture/out/production/classes/
+/Topics/Secondary constructor/Frozen desserts/out/
+/Topics/Secondary constructor/Frozen desserts/out/production/classes/
+/Topics/String templates/Arithmetic expression/out/
+/Topics/String templates/Arithmetic expression/out/production/classes/
+/Topics/String templates/Date and time formatting/out/
+/Topics/String templates/Date and time formatting/out/production/classes/
+/Topics/String templates/Print two numbers on the same line/out/
+/Topics/String templates/Print two numbers on the same line/out/production/classes/
+/Topics/String templates/Repetitions and templates/out/
+/Topics/String templates/Repetitions and templates/out/production/classes/
+/Topics/String templates/Theory/out/
+/Topics/String templates/Theory/out/production/classes/
+/Topics/When expression/Direction/out/
+/Topics/When expression/Direction/out/production/classes/
