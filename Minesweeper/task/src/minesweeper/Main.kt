@@ -1,269 +1,237 @@
 package minesweeper
 
+import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.system.exitProcess
 
-data class Items(val mine: Char = 'X', val cell: Char = '.')
+data class Items(
+    val XXX: Char = 'X',
+    val cell: Char = '.',
+    val free: String = "free",
+    val mine: String = "mine",
+    val star: Char = '*',
+    val freeSpace: Char = '/'
+)
 
-val minesMap: MutableMap<Int, Int> = mutableMapOf()
-val markedSpotsMap: MutableMap<Int, Int> = mutableMapOf()
-val numberedSpotsMap = mutableMapOf<Int, Int>()
+data class Cor(
+    val x: Int,
+    val y: Int
+)
+
+lateinit var mainField: MutableList<MutableList<Char>>
+lateinit var secondaryField: MutableList<MutableList<Char>>
 val chars = listOf('1', '2', '3', '4', '5', '6', '7', '8', '9')
+var firstStep = true
+var mines by Delegates.notNull<Int>()
+val minesMap: MutableList<Cor> = mutableListOf()
+val markedSpots: MutableList<Cor> = mutableListOf()
+val totalCells = 90
+var unCoveredCells = 0
 
 fun main() {
-    getMines()
+    val items = Items()
+    prepareField(items)
 }
 
-private fun getMines() {
+fun prepareField(items: Items) {
+    mainField = MutableList(9) { MutableList(12) { items.cell } }
+    secondaryField = MutableList(9) { MutableList(12) { items.freeSpace } }
+    for (i in 0..8) {
+        mainField[i][0] = '0' + i + 1
+        mainField[i][1] = '|'
+        mainField[i][11] = '|'
+        secondaryField[i][0] = '0' + i + 1
+        secondaryField[i][1] = '|'
+        secondaryField[i][11] = '|'
+    }
+    getMines(items)
+}
+
+fun getMines(items: Items) {
     println("How many mines do you want on the field?")
-    val mines = readLine()!!.toInt()
-    createMinesField(mines)
+    mines = readLine()!!.toInt()
+    addMines(items)
 }
 
-private fun createMinesField(mines: Int) {
-    val items = Items()
-    val minesField = MutableList(12) { MutableList(12) { items.cell } }
-    minesField[0] = mutableListOf(' ', '|', '1', '2', '3', '4', '5', '6', '7', '8', '9', '|')
-    minesField[1] = mutableListOf('-', '|', '-', '-', '-', '-', '-', '-', '-', '-', '-', '|')
-    minesField[11] = mutableListOf('-', '|', '-', '-', '-', '-', '-', '-', '-', '-', '-', '|')
-    var num = 1
-    for (i in 2..11) {
-        if (i < 11) minesField[i][0] = '0' + num else minesField[i][0] = '-'
-        num++
-        minesField[i][1] = '|'
-        minesField[i][11] = '|'
+fun addMines(items: Items, copy: Boolean = false) {
+    var bombs = mines
+    while (bombs > 0) {
+        val row = Random.nextInt(0, 8)
+        val column = Random.nextInt(2, 11)
+        if (secondaryField[row][column] != items.XXX) secondaryField[row][column] = items.XXX
+        bombs--
+        minesMap.add(Cor(column - 1, row + 1))
     }
-    var minesNumber = mines
-
-    while (minesNumber > 0) {
-        val x = Random.nextInt(2, 11)
-        val y = Random.nextInt(2, 11)
-        minesMap += (y - 1 to x - 1)
-        if (minesField[x][y] != items.mine) {
-            minesField[x][y] = items.mine
-            minesNumber--
-        }
-    }
-    createHints(minesField)
+    addHints(items, copy)
 }
 
-fun createHints(minesField: MutableList<MutableList<Char>>) {
-    val item = Items()
-    for (row in 2..10) {
+fun addHints(items: Items, copy: Boolean) {
+    for (row in 0..8) {
         for (column in 2..10) {
-
-            if (row == 2 && column == 2) upperLeftCorner(minesField, row, column, item)
-            if (row == 2 && column in 3..9) upperLine(minesField, row, column, item)
-            if (row == 2 && column == 10) upperRightCorner(minesField, row, column, item)
-            if (row in 3..9 && column == 2) leftLine(minesField, row, column, item)
-            if (row in 3..9 && column in 3..9) middle(minesField, row, column, item)
-            if (row in 3..9 && column == 10) rightLine(minesField, row, column, item)
-            if (row == 10 && column == 2) leftLowerCorner(minesField, row, column, item)
-            if (row == 10 && column in 3..9) lowerLine(minesField, row, column, item)
-            if (row == 10 && column == 10) lowerRightCorner(minesField, row, column, item)
+           if (secondaryField[row][column] != items.XXX) {
+               if (column + 1 < 11 && secondaryField[row][column + 1] == items.XXX) addNumber(
+                   secondaryField,
+                   row,
+                   column,
+                   items
+               )
+               if (column + 1 < 11 && row + 1 < 9 && secondaryField[row + 1][column + 1] == items.XXX) addNumber(
+                   secondaryField,
+                   row,
+                   column,
+                   items
+               )
+               if (row + 1 < 9 && secondaryField[row + 1][column] == items.XXX) addNumber(
+                   secondaryField,
+                   row,
+                   column,
+                   items
+               )
+               if (column - 1 > 1 && row + 1 < 9 && secondaryField[row + 1][column - 1] == items.XXX) addNumber(
+                   secondaryField,
+                   row,
+                   column,
+                   items
+               )
+               if (column - 1 > 1 && secondaryField[row][column - 1] == items.XXX) addNumber(
+                   secondaryField,
+                   row,
+                   column,
+                   items
+               )
+               if (column - 1 > 1 && row - 1 >= 0 && secondaryField[row - 1][column - 1] == items.XXX) addNumber(
+                   secondaryField,
+                   row,
+                   column,
+                   items
+               )
+               if (row - 1 >= 0 && secondaryField[row - 1][column] == items.XXX) addNumber(
+                   secondaryField,
+                   row,
+                   column,
+                   items
+               )
+               if (column + 1 < 11 && row - 1 >= 0 && secondaryField[row - 1][column + 1] == items.XXX) addNumber(
+                   secondaryField,
+                   row,
+                   column,
+                   items
+               )
+           }
         }
     }
-    prepareField(minesField)
+    if (copy) copyFields(items) else sapper(items)
 }
 
-fun prepareField(minesField: MutableList<MutableList<Char>>) {
-    val items = Items()
-    for(x in 2..10) {
-        for (y in 2..10) {
-            if (minesField[x][y] == items.mine) {
-                minesField[x][y] = items.cell
-            } else if (chars.contains(minesField[x][y])) {
-                numberedSpotsMap += (y - 1 to x - 1)
-                //minesField[x][y] = items.cell
+fun addNumber(secondaryField: MutableList<MutableList<Char>>, row: Int, column: Int, items: Items) {
+    if (secondaryField[row][column] != items.XXX) {
+        if (secondaryField[row][column] == items.freeSpace) secondaryField[row][column] =
+            '0' + 1 else secondaryField[row][column] = secondaryField[row][column].plus(1)
+    }
+}
+
+
+fun copyFields(items: Items) {
+    for (row in 0..8) {
+        for (column in 2..11) {
+            if (!chars.contains(mainField[row][column])) {
+                if (secondaryField[row][column] == items.XXX && mainField[row][column] == items.star) {
+                    mainField[row][column] = items.star
+                } else if (secondaryField[row][column] == items.XXX ) { //|| chars.contains(secondaryField[row][column])
+                    mainField[row][column] = items.cell
+                } else {
+                    mainField[row][column] = secondaryField[row][column]
+                    if (mainField[row][column] == items.star) markedSpots.remove(Cor(column - 1,row + 1))
+                    unCoveredCells++
+                }
             }
         }
     }
-    /**
-     * There is an issue here...
-     * the for loops goes onto all the cells correctly, and the conditions are set well.
-     * also, the debug shows that it goes to store the value. but not all the values are in both
-     * [minesMap] and [numberedSpotsMap], despite [minesField] is prepared as needed.
-     */
-    println(minesMap)
-    println(numberedSpotsMap)
-    printField(minesField)
+    sapper(items)
 }
 
-fun lowerRightCorner(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
 
-
-    if (minesField[row][column - 1] == item.mine) mines++
-    if (minesField[row - 1][column - 1] == item.mine) mines++
-    if (minesField[row - 1][column] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-
-}
-
-fun lowerLine(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
-
-    if (minesField[row][column + 1] == item.mine) mines++
-    if (minesField[row - 1][column + 1] == item.mine) mines++
-    if (minesField[row - 1][column] == item.mine) mines++
-    if (minesField[row - 1][column - 1] == item.mine) mines++
-    if (minesField[row][column - 1] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-
-}
-
-fun leftLowerCorner(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
-
-    if (minesField[row][column + 1] == item.mine) mines++
-    if (minesField[row - 1][column + 1] == item.mine) mines++
-    if (minesField[row - 1][column] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-}
-
-fun rightLine(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
-
-    if (minesField[row - 1][column] == item.mine) mines++
-    if (minesField[row - 1][column - 1] == item.mine) mines++
-    if (minesField[row][column - 1] == item.mine) mines++
-    if (minesField[row + 1][column - 1] == item.mine) mines++
-    if (minesField[row + 1][column] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-
-}
-
-fun middle(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
-
-    if (minesField[row - 1][column] == item.mine) mines++
-    if (minesField[row - 1][column + 1] == item.mine) mines++
-    if (minesField[row][column + 1] == item.mine) mines++
-    if (minesField[row + 1][column + 1] == item.mine) mines++
-    if (minesField[row + 1][column] == item.mine) mines++
-    if (minesField[row + 1][column - 1] == item.mine) mines++
-    if (minesField[row][column - 1] == item.mine) mines++
-    if (minesField[row - 1][column - 1] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-}
-
-fun leftLine(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
-
-    if (minesField[row - 1][column] == item.mine) mines++
-    if (minesField[row - 1][column + 1] == item.mine) mines++
-    if (minesField[row][column + 1] == item.mine) mines++
-    if (minesField[row + 1][column + 1] == item.mine) mines++
-    if (minesField[row + 1][column] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-
-}
-
-fun upperRightCorner(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
-
-    if (minesField[row][column - 1] == item.mine) mines++
-    if (minesField[row + 1][column - 1] == item.mine) mines++
-    if (minesField[row + 1][column] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-}
-
-private fun upperLeftCorner(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
-
-    if (minesField[row][column + 1] == item.mine) mines++
-    if (minesField[row + 1][column + 1] == item.mine) mines++
-    if (minesField[row + 1][column] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-}
-
-private fun upperLine(minesField: MutableList<MutableList<Char>>, row: Int, column: Int, item: Items) {
-    if (minesField[row][column] == item.mine) return
-    var mines = 0
-
-    if (minesField[row][column + 1] == item.mine) mines++
-    if (minesField[row + 1][column + 1] == item.mine) mines++
-    if (minesField[row + 1][column] == item.mine) mines++
-    if (minesField[row + 1][column - 1] == item.mine) mines++
-    if (minesField[row][column - 1] == item.mine) mines++
-
-    if (mines > 0) minesField[row][column] = '0' + mines
-
-}
-
-private fun printField(list: MutableList<MutableList<Char>>) {
-    for (line in list) {
-        println(line.joinToString(""))
-    }
-    sapper(list)
-}
-
-fun sapper(minesField: MutableList<MutableList<Char>>) {
-    print("Set/delete mine marks (x and y coordinates):")
-    val (x, y) = readLine()!!.split(" ").map { it.toInt() }
-    if (minesMap.containsKey(y)) checkMine(minesField, y, x) else gotNumberOrEmptySpace(minesField, y, x)
-}
-
-fun gotNumberOrEmptySpace(minesField: MutableList<MutableList<Char>>, x: Int, y: Int) {
-    when {
-        chars.contains(minesField[x + 1][y + 1]) -> {
-            println("There is a number here!")
-            sapper(minesField)
-        }
-        else -> checkCellAndResult(minesField, x, y)
+fun sapper(items: Items) {
+    printField(mainField)
+    print("Set/unset mine marks or claim a cell as free:")
+    val (a, b, c) = readLine()!!.split(" ")
+    val row = b.toInt() - 1
+    val column = a.toInt() + 1
+    when (c) {
+        items.mine -> markField(row, column, items)
+        items.free -> exploreCell(row, column, items)
+        else -> println("Unknown Command")
     }
 }
 
-fun checkMine(minesField: MutableList<MutableList<Char>>, x: Int, y: Int) {
-    when {
-        (minesMap.getValue(x) == y) -> checkCellAndResult(minesField, x, y)
-        chars.contains(minesField[x + 1][y + 1]) -> {
-            println("There is a number here!")
-            sapper(minesField)
-        }
-        else -> checkCellAndResult(minesField, x, y)
-    }
-}
-
-fun checkCellAndResult(minesField: MutableList<MutableList<Char>>, x: Int, y: Int) {
-    if (minesField[x + 1][y + 1] == '.') {
-        minesField[x + 1][y + 1] = '*'
-        markedSpotsMap += (y to x)
-        checkResult(minesField)
+fun markField(row: Int, column: Int, items: Items) {
+    firstStep = false
+    if (mainField[row][column] != items.star) {
+        mainField[row][column] = items.star
+        markedSpots.add(Cor(column - 1, row + 1))
     } else {
-        minesField[x + 1][y + 1] = '.'
-        markedSpotsMap.remove(y)
-        checkResult(minesField)
+        if (secondaryField[row][column] == items.XXX) {
+            mainField[row][column] = items.cell
+            markedSpots.remove(Cor(column - 1, row + 1))
+        } else {
+            mainField[row][column] = items.cell
+            markedSpots.remove(Cor(column - 1, row + 1))
+        }
+    }
+    checkResult(items)
+}
+
+fun checkResult(items: Items) {
+    if (minesMap.sortedBy { it.x } == markedSpots.sortedBy { it.x }) {
+        printField(mainField)
+        println("Congratulations! You found all the mines!")
+        exitProcess(0)
+    } else if (unCoveredCells == totalCells - mines) {
+        println("Congratulations! You found all the mines!")
+        exitProcess(0)
+    } else {
+        sapper(items)
     }
 }
 
-fun checkResult(minesField: MutableList<MutableList<Char>>) {
-    val boolean = minesMap.keys.toList().sorted() == markedSpotsMap.keys.toList().sorted() &&
-            minesMap.values.toList().sorted() == markedSpotsMap.values.toList().sorted()
-    when {
-        boolean -> {
-            println("Congratulations! You found all the mines!")
+fun exploreCell(row: Int, column: Int, items: Items) {
+    if (secondaryField[row][column] == items.XXX) {
+        if (firstStep) {
+            firstStep = false
+            resetField(items)
+        } else {
+            mainField[row][column] = items.XXX
+            printField(mainField)
+            println("You stepped on a mine and failed!")
             exitProcess(0)
         }
-        else -> {
-            printField(minesField)
-            sapper(minesField)
+    } else if (chars.contains(secondaryField[row][column])) {
+        firstStep = false
+        mainField[row][column] = secondaryField[row][column]
+        unCoveredCells++
+        checkResult(items)
+    } else {
+        firstStep = false
+        copyFields(items)
+    }
+}
+
+fun resetField(items: Items) {
+    for (row in 0..8) {
+        for (column in 2..10) {
+            secondaryField[row][column] = items.freeSpace
         }
     }
+    minesMap.clear()
+    addMines(items, true)
+}
+
+
+fun printField(mainField: MutableList<MutableList<Char>>) {
+    println(" |123456789|")
+    println("-|---------|")
+    for (line in mainField) {
+        println(line.joinToString(""))
+    }
+    println("-|---------|")
 }
