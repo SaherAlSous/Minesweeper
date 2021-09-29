@@ -12,6 +12,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Minesweeper/task" />
+            <option value="$PROJECT_DIR$/Topics/Companion object/Board game basics  Player" />
+            <option value="$PROJECT_DIR$/Topics/Companion object/Companion" />
+            <option value="$PROJECT_DIR$/Topics/Companion object/Fix an error" />
+            <option value="$PROJECT_DIR$/Topics/Companion object/Fix me" />
+            <option value="$PROJECT_DIR$/Topics/Companion object/Theory" />
             <option value="$PROJECT_DIR$/Topics/Declaring classes/Complex numbers" />
             <option value="$PROJECT_DIR$/Topics/Declaring classes/Playing with time" />
             <option value="$PROJECT_DIR$/Topics/Declaring classes/Pseudo-constructor" />
